@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEditor;
 
 [CustomEditor(typeof(SurroundingGenerator))]
-public class urroundingGeneratorEditor : Editor
+public class SurroundingGeneratorEditor : Editor
 {
     public override void OnInspectorGUI()
     {

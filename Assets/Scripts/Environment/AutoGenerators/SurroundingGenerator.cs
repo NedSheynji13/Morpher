@@ -37,7 +37,7 @@ public class SurroundingGenerator : MonoBehaviour
         {
             Instantiate(Horizontal, transform.position + new Vector3(-0.5f, 0.5f + HeightOrDepth, 0.5f + i), Quaternion.identity, gameObject.transform);
         }//Creates the upper Horizontal Line
-        for (int i = 1; i < HeightOrDepth; i++) 
+        for (int i = 1; i < HeightOrDepth; i++)
         {
             Instantiate(Vertical, transform.position + new Vector3(-0.5f, 0.5f + i, 0.5f + Length), Quaternion.identity, gameObject.transform);
         }//Creates the right Vertical Line
@@ -50,7 +50,7 @@ public class SurroundingGenerator : MonoBehaviour
         }//Fills it up
         if (DoubleSided)
         {
-            Instantiate(LeftUp, transform.position + new Vector3(-0.52f, 0.5f, 0.5f), Quaternion.identity * Quaternion.Euler(0,180,0), gameObject.transform);
+            Instantiate(LeftUp, transform.position + new Vector3(-0.52f, 0.5f, 0.5f), Quaternion.identity * Quaternion.Euler(0, 180, 0), gameObject.transform);
             Instantiate(RightUp, transform.position + new Vector3(-0.52f, 0.5f, 0.5f + Length), Quaternion.identity * Quaternion.Euler(0, 180, 0), gameObject.transform);
             Instantiate(LeftDown, transform.position + new Vector3(-0.52f, 0.5f + HeightOrDepth, 0.5f), Quaternion.identity * Quaternion.Euler(0, 180, 0), gameObject.transform);
             Instantiate(RightDown, transform.position + new Vector3(-0.52f, 0.5f + HeightOrDepth, 0.5f + Length), Quaternion.identity * Quaternion.Euler(0, 180, 0), gameObject.transform);
