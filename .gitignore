@@ -32,3 +32,7 @@ ExportedObj/
 *.user
 *.unityproj
 *.booproj
+/Assets/Scenes/etc.meta
+/Assets/Scenes/etc
+/Assets/Soundtrack/ceolfiles.meta
+/Assets/Soundtrack/ceolfiles
