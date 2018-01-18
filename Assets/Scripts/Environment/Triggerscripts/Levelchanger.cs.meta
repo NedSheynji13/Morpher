@@ -1,0 +1,14 @@
+fileFormatVersion: 2
+guid: 9a77a1b3b57799847ad6c074ad4de749
+timeCreated: 1515741404
+licenseType: Free
+MonoImporter:
+  externalObjects: {}
+  serializedVersion: 2
+  defaultReferences:
+  - sceneChangeScreen: {fileID: 2800000, guid: cec9ebbde8c81b24aa1e9ffc5e2f872f, type: 3}
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

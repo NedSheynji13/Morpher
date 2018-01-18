@@ -1,0 +1,22 @@
+fileFormatVersion: 2
+guid: a82fc6a60b73a964685537c19aed486a
+timeCreated: 1516021324
+licenseType: Free
+TrueTypeFontImporter:
+  externalObjects: {}
+  serializedVersion: 4
+  fontSize: 16
+  forceTextureCase: -2
+  characterSpacing: 0
+  characterPadding: 1
+  includeFontData: 1
+  fontName: Steampunk DEMO by Marta van Eck
+  fontNames:
+  - Steampunk DEMO by Marta van Eck
+  fallbackFontReferences: []
+  customCharacters: 
+  fontRenderingMode: 0
+  ascentCalculationMode: 1
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
