@@ -12,7 +12,7 @@ public class MovementBasicForm : MonoBehaviour
     private int colCount = 0;
     private float gravityStrength = 10;
     private float gravityStrengthMP = 1;
-    private bool moveBlock, jumpBlock, CRunning;
+    private bool jumpBlock, CRunning;
 
     #region Variables used for the jumping animation
     private bool jumpAnimation;     //Used to initiate the jumping animation
@@ -22,15 +22,14 @@ public class MovementBasicForm : MonoBehaviour
     {
         //Upon start saves the rigidbody of this game object, the speed with which the object shall move
         physix = GetComponent<Rigidbody>();
-        moveBlock = jumpBlock = CRunning = false;
+        jumpBlock = CRunning = false;
     }
 
     void FixedUpdate()
     {
         //Using GetAxis results in some kind of acceleration. The object needs some time to get on speed
         //using GetAxisRaw allows instant movement into the given direction with infinite acceleration
-
-
+        
         Physix2Move.x = Input.GetAxis("Horizontal") * speed;
         Physix2Move.z = Input.GetAxis("Vertical") * speed;
         Physix2Move.y = physix.velocity.y;
@@ -39,16 +38,16 @@ public class MovementBasicForm : MonoBehaviour
 
         if (Input.GetButtonDown("Jump") && !jumpBlock) //Allows the user to jump unless he is aired
             Jump();
-        else if (!Morphing.grounded)  //Strengthens the gravity to make jumping more realistic
-            GravityEqualizer();
+        //else if (!Morphing.grounded)  //Strengthens the gravity to make jumping more realistic
+        //    GravityEqualizer();
 
         if (!Morphing.grounded)
-            physix.AddForce(Vector3.down * gravityStrength);
+        {
+            physix.AddForce(Vector3.down * gravityStrength * gravityStrengthMP);
+            physix.velocity = new Vector3(physix.velocity.x, physix.velocity.y, physix.velocity.z);
+        }
+        physix.velocity = lookRot * Physix2Move;
 
-        if (!Morphing.morphing && !moveBlock)
-            physix.velocity = lookRot * Physix2Move;
-        else
-            physix.velocity = new Vector3(0, physix.velocity.y, 0);
         //Asking if, so that the user cant move while morphing
         //Taking information from the user input WASD in order to give the object a velocity to the given direction
         //Matrix multiplied with the rotation of the camera to allow movement with the directions given by the camera rotation
@@ -85,7 +84,7 @@ public class MovementBasicForm : MonoBehaviour
         colCount++;
         for (int i = 0; i < col.contacts.Length; i++)
         {
-            if (col.contacts[i].point.y - transform.position.y < 0.2f && col.contacts[i].point.y - transform.position.y > -0.2f)
+            if (col.contacts[i].point.y - transform.position.y < 0.3f && col.contacts[i].point.y - transform.position.y > -0.3f)
             {
                 gravityStrengthMP = 2;
                 break;
@@ -104,7 +103,7 @@ public class MovementBasicForm : MonoBehaviour
     private void OnTriggerStay(Collider other)
     {
         Morphing.grounded = true;
-        moveBlock = jumpBlock = false;
+        jumpBlock = false;
         gravityStrengthMP = 1;
     }
 

@@ -22,24 +22,21 @@ public class PlattformSpinningBall : MonoBehaviour
         if (other.GetComponent<Rigidbody>() != null)
         {
             Morphing.forced = true;
-        }
-    }
-
-    void OnTriggerStay(Collider other)
-    {
-        if (other.GetComponent<Rigidbody>() != null)
-        {
             Player.transform.parent = gameObject.transform;
         }
     }
+
+    private void OnTriggerStay(Collider other)
+    {
+        Morphing.morphing = true;
+    }
+
     void OnTriggerExit(Collider other)
     {
         if (other.GetComponent<Rigidbody>() != null)
         {
-            Player.transform.rotation = Quaternion.identity;
-            Player.transform.localScale = Vector3.one;
             Player.transform.parent = null;
-            Morphing.forced = false;
+            Morphing.morphing = false;
         }
     }
 }

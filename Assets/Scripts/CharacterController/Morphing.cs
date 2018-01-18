@@ -69,7 +69,6 @@ public class Morphing : MonoBehaviour
     {
         if (currentForm.name != "BasicForm")
         {
-            Pos = currentForm.transform.localPosition;  //Checks the objects current position
             Pos.y++;                                    //Increases the Y position by one and creates this little hovering effect
             morphing = true;                            //Prevents from multiple morphings
             switch (currentForm.name)
@@ -99,7 +98,7 @@ public class Morphing : MonoBehaviour
 
     private void FixedUpdate()
     {
-
+        Pos = currentForm.transform.localPosition;  //Checks the objects current position
         //Pos = currentForm.transform.localPosition;  //Checks the objects current position
         //General Scaling Lerp which runs constantly in the background. Only the object, its Active state and its wantedscale to which he lerps changes
         currentForm.transform.localScale = Vector3.Lerp(currentForm.transform.localScale, wantedscale, 10 * Time.deltaTime);
