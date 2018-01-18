@@ -38,7 +38,6 @@ public class PlattformSpinningBall : MonoBehaviour
         {
             Player.transform.rotation = Quaternion.identity;
             Player.transform.localScale = Vector3.one;
-            Player.transform.position = Vector3.zero;
             Player.transform.parent = null;
             Morphing.forced = false;
         }
