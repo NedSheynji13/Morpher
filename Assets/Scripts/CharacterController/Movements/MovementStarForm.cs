@@ -42,10 +42,7 @@ public class MovementStarForm : MonoBehaviour
 
     private void OnCollisionStay(Collision other)
     {
-        if (other.contacts[0].point != null)
-        {
-            equalizer = other.contacts[0].normal;
-        }
+        equalizer = other.contacts[0].normal;
     }
 
     private void OnCollisionEnter(Collision collision)

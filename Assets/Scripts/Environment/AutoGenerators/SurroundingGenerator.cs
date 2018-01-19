@@ -45,7 +45,7 @@ public class SurroundingGenerator : MonoBehaviour
         {
             for (int j = 1; j < HeightOrDepth; j++)
             {
-                GameObject E = Instantiate(Empty, transform.position + new Vector3(-0.5f, 0.5f + j, 0.5f + i), Quaternion.identity, gameObject.transform);
+                Instantiate(Empty, transform.position + new Vector3(-0.5f, 0.5f + j, 0.5f + i), Quaternion.identity, gameObject.transform);
             }
         }//Fills it up
         if (DoubleSided)
@@ -114,7 +114,7 @@ public class SurroundingGenerator : MonoBehaviour
         {
             for (int j = 1; j < HeightOrDepth; j++)
             {
-                GameObject E = Instantiate(Empty, transform.position + new Vector3(0.5f + j, -0.5f, 0.5f + i), Quaternion.identity, gameObject.transform);
+                Instantiate(Empty, transform.position + new Vector3(0.5f + j, -0.5f, 0.5f + i), Quaternion.identity, gameObject.transform);
             }
         }//Fills it up
         if (DoubleSided)
@@ -153,7 +153,7 @@ public class SurroundingGenerator : MonoBehaviour
             {
                 for (int j = 1; j < HeightOrDepth; j++)
                 {
-                    GameObject E = Instantiate(Empty, transform.position + new Vector3(0.5f + j, -0.51f, 0.5f + i), Quaternion.identity, gameObject.transform);
+                    Instantiate(Empty, transform.position + new Vector3(0.5f + j, -0.51f, 0.5f + i), Quaternion.identity, gameObject.transform);
                 }
             }
         }
