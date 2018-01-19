@@ -31,12 +31,12 @@ public class Affector : MonoBehaviour
                     }
                 case Options.MoveRight:
                     {
-                        transform.Translate(transform.rotation * Vector3.back * 0.1f);
+                        transform.Translate(transform.rotation * Vector3.forward * 0.1f);
                         break;
                     }
                 case Options.MoveLeft:
                     {
-                        transform.Translate(transform.rotation * Vector3.forward * 0.1f);
+                        transform.Translate(transform.rotation * Vector3.back * 0.1f);
                         break;
                     }
                 default:
