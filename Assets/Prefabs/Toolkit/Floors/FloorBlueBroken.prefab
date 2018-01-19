@@ -20,6 +20,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4691878498279414}
   - component: {fileID: 114174613427724806}
+  - component: {fileID: 114081583455114224}
   m_Layer: 0
   m_Name: FloorBlueBroken
   m_TagString: Untagged
@@ -40,6 +41,17 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &114081583455114224
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1875643097830786}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6c5833f13dfa9b947b24dd6059c132f0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &114174613427724806
 MonoBehaviour:
   m_ObjectHideFlags: 1
