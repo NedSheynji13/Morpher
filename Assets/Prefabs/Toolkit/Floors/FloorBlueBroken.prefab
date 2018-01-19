@@ -51,13 +51,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 054d326bf6fa0c945896272110a1915c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Empty: {fileID: 1544312129952534, guid: 042a3fc6ca5715748b05bfaccd99073c, type: 2}
-  Horizontal: {fileID: 1781877512358538, guid: e8d60bcc04f043c479e2bc6cf90ce777, type: 2}
-  LeftDown: {fileID: 1104107927295654, guid: 88ec89c6e1c351540951bf120f3d93f2, type: 2}
-  LeftUp: {fileID: 1869222575833962, guid: 6218602ef2743064aa7447892143dd8a, type: 2}
-  RightDown: {fileID: 1497298586725364, guid: d7031547bb8dcf740818b3d2ca4ccf90, type: 2}
-  RightUp: {fileID: 1723536724376160, guid: da6b547d6e93c2d4a9cb03a63c7329ab, type: 2}
-  Vertical: {fileID: 1310074741041382, guid: d9cab959b35494b40b98c309a9ef3302, type: 2}
-  IsWall: 0
+  Empty: {fileID: 1544312129952534, guid: 0b5ef69787deaab4895023b6ba82dfd2, type: 2}
+  Horizontal: {fileID: 1781877512358538, guid: 77a8eb5d208ddb444a760c11e3525ad9, type: 2}
+  LeftDown: {fileID: 1104107927295654, guid: 65f1381cb1d12954b8ce04ff0af6401e, type: 2}
+  LeftUp: {fileID: 1869222575833962, guid: 6c10773edbb4ba743872a25c66dc8c80, type: 2}
+  RightDown: {fileID: 1497298586725364, guid: efde5feb8ada7b946966ad8e19a14603, type: 2}
+  RightUp: {fileID: 1723536724376160, guid: 336558f7dc8b75b4b82d7fa6d3546c22, type: 2}
+  Vertical: {fileID: 1310074741041382, guid: 573e5ae7850603c4f88c9fdd89d102e0, type: 2}
+  DoubleSided: 0
   HeightOrDepth: 5
   Length: 5

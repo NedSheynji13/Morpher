@@ -21,7 +21,7 @@ GameObject:
   - component: {fileID: 4691878498279414}
   - component: {fileID: 114174613427724806}
   m_Layer: 0
-  m_Name: WallYellowBroken
+  m_Name: FloorYellowBroken
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -51,13 +51,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 054d326bf6fa0c945896272110a1915c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Empty: {fileID: 1544312129952534, guid: e1c0585d6cde6894798814aa296dbd8c, type: 2}
-  Horizontal: {fileID: 1781877512358538, guid: 94798c59a77ca844eb9bc9d01d143fd6, type: 2}
-  LeftDown: {fileID: 1104107927295654, guid: fc880dceb3215a348b88dddb81ba5758, type: 2}
-  LeftUp: {fileID: 1869222575833962, guid: 78d1e4740e4c43947ac5b87475854d8f, type: 2}
-  RightDown: {fileID: 1497298586725364, guid: 70226d0d915a6974b9bb551696e370ff, type: 2}
-  RightUp: {fileID: 1723536724376160, guid: 647220ca06354014fa9dc23f7ff9e1ea, type: 2}
-  Vertical: {fileID: 1310074741041382, guid: 843dd863f3451a940b086f23fedcdcbc, type: 2}
-  IsWall: 0
+  Empty: {fileID: 1544312129952534, guid: 82829ab3cba44c746845c9867b397e0c, type: 2}
+  Horizontal: {fileID: 1781877512358538, guid: 84caf5633b1cefb47b930fe927985c92, type: 2}
+  LeftDown: {fileID: 1104107927295654, guid: 9dfacbe360a346b489ea3dd16c73e881, type: 2}
+  LeftUp: {fileID: 1869222575833962, guid: 500a6cd917a4e0d46be937d138569e37, type: 2}
+  RightDown: {fileID: 1497298586725364, guid: 741b41ae2416e3848a8089aac91e997a, type: 2}
+  RightUp: {fileID: 1723536724376160, guid: 15323d4564241b143884038ed91d6459, type: 2}
+  Vertical: {fileID: 1310074741041382, guid: 70528c88ab2e89145b061f8fd830fa54, type: 2}
+  DoubleSided: 0
   HeightOrDepth: 5
   Length: 5
