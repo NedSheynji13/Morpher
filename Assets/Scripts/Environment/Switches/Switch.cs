@@ -8,8 +8,8 @@ public class Switch : MonoBehaviour
     public bool isHeavy;
     public Affector affector;
 
-
-    private bool pressed;
+    [HideInInspector]
+    public bool pressed;
     private Vector3 maxHeight, minHeight;
     #endregion
 
