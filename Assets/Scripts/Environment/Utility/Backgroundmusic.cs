@@ -6,7 +6,6 @@ public class Backgroundmusic : MonoBehaviour
 {
     #region Variables
     public AudioSource[] BGM;
-    private Vector3 audioPosition;
     #endregion
 
     private void Start()

@@ -5,8 +5,7 @@ using UnityEngine;
 public class MovementStarForm : MonoBehaviour
 {
     private Rigidbody physix;       //Used for saving the rigidbody component of this game object
-    private Vector3 Physix2Move, dir, torque, equalizer;    //Used for rewriting the game objects velocities
-    private Quaternion lookRot;     //Used for rotating the player according to the mouse input
+    private Vector3 dir, torque, equalizer;    //Used for rewriting the game objects velocities
     private Vector3 lastForce = new Vector3(0, 0, 0);
     private int colCount = 0;
     private bool floating = true;

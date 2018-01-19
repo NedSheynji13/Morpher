@@ -9,7 +9,7 @@ public class Switch : MonoBehaviour
     public Affector affector;
 
 
-    private bool pressed, hold;
+    private bool pressed;
     private Vector3 maxHeight, minHeight;
     #endregion
 
@@ -17,7 +17,7 @@ public class Switch : MonoBehaviour
     {
         maxHeight = transform.position;
         minHeight = maxHeight + (Vector3.down * 0.1f);
-        pressed = hold = false;
+        pressed = false;
     }
     private void Update()
     {
