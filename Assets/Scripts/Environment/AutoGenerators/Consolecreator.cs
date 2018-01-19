@@ -5,80 +5,43 @@ using UnityEngine;
 public class Consolecreator : MonoBehaviour
 {
     #region Variables
+    public Affector puzzleAffector;
     public GameObject Light, Heavy, Red, Green;
-    public int first, second, third;
+    public int[] correct = new int[3];
+    private int pressCounter = 0;
     private Vector3 xOffset = Vector3.right * 3;
     private Vector3 yOffset = Vector3.up * 3;
     private Vector3 zOffset = Vector3.forward * 3;
-    private GameObject[] hint, console;
+
+    private Vector3[] switchOffsets = new Vector3[9];
+    private Vector3[] hintOffsets = new Vector3[9];
     #endregion
+
+    public void Build(GameObject switchType)
+    {
+        randomize(); calcOffsets();
+        for (int i = 0; i < switchOffsets.Length; i++)
+        {
+            Instantiate(switchType, switchOffsets[i], Quaternion.identity, transform.GetChild(0));
+        }
+
+        for (int i = 0; i < hintOffsets.Length; i++)
+        {
+            if (i == correct[0] || i == correct[1] || i == correct[2])
+                Instantiate(Green, hintOffsets[i], Quaternion.identity, transform.GetChild(1));
+            else
+                Instantiate(Red, hintOffsets[i], Quaternion.identity, transform.GetChild(1));
+        }
+    }
 
     public void BuildLight()
     {
-        Instantiate(Light, transform.position - xOffset - zOffset, Quaternion.identity, transform.GetChild(0));
-        Instantiate(Light, transform.position - xOffset, Quaternion.identity, transform.GetChild(0));
-        Instantiate(Light, transform.position - xOffset + zOffset, Quaternion.identity, transform.GetChild(0));
-        Instantiate(Light, transform.position - zOffset, Quaternion.identity, transform.GetChild(0));
-        Instantiate(Light, transform.position, Quaternion.identity, transform.GetChild(0));
-        Instantiate(Light, transform.position + zOffset, Quaternion.identity, transform.GetChild(0));
-        Instantiate(Light, transform.position + xOffset - zOffset, Quaternion.identity, transform.GetChild(0));
-        Instantiate(Light, transform.position + xOffset, Quaternion.identity, transform.GetChild(0));
-        Instantiate(Light, transform.position + xOffset + zOffset, Quaternion.identity, transform.GetChild(0));
-
-        Instantiate(Red, transform.position + yOffset - zOffset + Vector3.down + Vector3.back, Quaternion.identity, transform.GetChild(1));
-        Instantiate(Red, transform.position + yOffset + Vector3.down + Vector3.back, Quaternion.identity, transform.GetChild(1));
-        Instantiate(Red, transform.position + yOffset + zOffset + Vector3.down + Vector3.back, Quaternion.identity, transform.GetChild(1));
-        Instantiate(Red, transform.position - zOffset + Vector3.down + Vector3.back, Quaternion.identity, transform.GetChild(1));
-        Instantiate(Red, transform.position + Vector3.down + Vector3.back, Quaternion.identity, transform.GetChild(1));
-        Instantiate(Red, transform.position + zOffset + Vector3.down + Vector3.back, Quaternion.identity, transform.GetChild(1));
-        Instantiate(Red, transform.position - yOffset - zOffset + Vector3.down + Vector3.back, Quaternion.identity, transform.GetChild(1));
-        Instantiate(Red, transform.position - yOffset + Vector3.down + Vector3.back, Quaternion.identity, transform.GetChild(1));
-        Instantiate(Red, transform.position - yOffset + zOffset + Vector3.down + Vector3.back, Quaternion.identity, transform.GetChild(1));
-
-        randomize();
-        Vector3 tempposition = transform.GetChild(1).transform.GetChild(first).transform.position;
-        GameObject.DestroyImmediate(transform.GetChild(1).transform.GetChild(first).gameObject);
-        Instantiate(Green, tempposition, Quaternion.identity, transform.GetChild(1));
-        tempposition = transform.GetChild(1).transform.GetChild(second).transform.position;
-        GameObject.DestroyImmediate(transform.GetChild(1).transform.GetChild(second).gameObject);
-        Instantiate(Green, tempposition, Quaternion.identity, transform.GetChild(1));
-        tempposition = transform.GetChild(1).transform.GetChild(third).transform.position;
-        GameObject.DestroyImmediate(transform.GetChild(1).transform.GetChild(third).gameObject);
-        Instantiate(Green, tempposition, Quaternion.identity, transform.GetChild(1));
+        Build(Light);
     }
 
     public void BuildHeavy()
     {
-        Instantiate(Heavy, transform.position - xOffset - zOffset, Quaternion.identity, transform.GetChild(0));
-        Instantiate(Heavy, transform.position - xOffset, Quaternion.identity, transform.GetChild(0));
-        Instantiate(Heavy, transform.position - xOffset + zOffset, Quaternion.identity, transform.GetChild(0));
-        Instantiate(Heavy, transform.position - zOffset, Quaternion.identity, transform.GetChild(0));
-        Instantiate(Heavy, transform.position, Quaternion.identity, transform.GetChild(0));
-        Instantiate(Heavy, transform.position + zOffset, Quaternion.identity, transform.GetChild(0));
-        Instantiate(Heavy, transform.position + xOffset - zOffset, Quaternion.identity, transform.GetChild(0));
-        Instantiate(Heavy, transform.position + xOffset, Quaternion.identity, transform.GetChild(0));
-        Instantiate(Heavy, transform.position + xOffset + zOffset, Quaternion.identity, transform.GetChild(0));
-
-        Instantiate(Red, transform.position + yOffset - zOffset + Vector3.down + Vector3.back, Quaternion.identity, transform.GetChild(1));
-        Instantiate(Red, transform.position + yOffset + Vector3.down + Vector3.back, Quaternion.identity, transform.GetChild(1));
-        Instantiate(Red, transform.position + yOffset + zOffset + Vector3.down + Vector3.back, Quaternion.identity, transform.GetChild(1));
-        Instantiate(Red, transform.position - zOffset + Vector3.down + Vector3.back, Quaternion.identity, transform.GetChild(1));
-        Instantiate(Red, transform.position + Vector3.down + Vector3.back, Quaternion.identity, transform.GetChild(1));
-        Instantiate(Red, transform.position + zOffset + Vector3.down + Vector3.back, Quaternion.identity, transform.GetChild(1));
-        Instantiate(Red, transform.position - yOffset - zOffset + Vector3.down + Vector3.back, Quaternion.identity, transform.GetChild(1));
-        Instantiate(Red, transform.position - yOffset + Vector3.down + Vector3.back, Quaternion.identity, transform.GetChild(1));
-        Instantiate(Red, transform.position - yOffset + zOffset + Vector3.down + Vector3.back, Quaternion.identity, transform.GetChild(1));
-
-        randomize();
-        Vector3 tempposition = transform.GetChild(1).transform.GetChild(first).transform.position;
-        GameObject.DestroyImmediate(transform.GetChild(1).transform.GetChild(first).gameObject);
-        Instantiate(Green, tempposition, Quaternion.identity, transform.GetChild(1));
-        tempposition = transform.GetChild(1).transform.GetChild(second).transform.position;
-        GameObject.DestroyImmediate(transform.GetChild(1).transform.GetChild(second).gameObject);
-        Instantiate(Green, tempposition, Quaternion.identity, transform.GetChild(1));
-        tempposition = transform.GetChild(1).transform.GetChild(third).transform.position;
-        GameObject.DestroyImmediate(transform.GetChild(1).transform.GetChild(third).gameObject);
-        Instantiate(Green, tempposition, Quaternion.identity, transform.GetChild(1));
+        Build(Heavy);
     }
 
     public void Delete()
@@ -92,24 +55,73 @@ public class Consolecreator : MonoBehaviour
 
     private void randomize()
     {
-        first = (int)Mathf.Round(Random.value * 8);
+        correct[0] = (int)Mathf.Round(Random.value * 8);
+        do
         {
-            second = (int)Mathf.Round(Random.value * 8);
+            correct[1] = (int)Mathf.Round(Random.value * 8);
         }
-        while (second == first) ;
+        while (correct[1] == correct[0]);
+        do
         {
-            third = (int)Mathf.Round(Random.value * 8);
+            correct[2] = (int)Mathf.Round(Random.value * 8);
         }
-        while (third == second || third == first) ;
+        while (correct[2] == correct[1] || correct[2] == correct[0]);
+    }
+
+    private void calcOffsets()
+    {
+        switchOffsets[0] = transform.position - xOffset - zOffset;
+        switchOffsets[1] = transform.position - xOffset;
+        switchOffsets[2] = transform.position - xOffset + zOffset;
+        switchOffsets[3] = transform.position - zOffset;
+        switchOffsets[4] = transform.position;
+        switchOffsets[5] = transform.position + zOffset;
+        switchOffsets[6] = transform.position + xOffset - zOffset;
+        switchOffsets[7] = transform.position + xOffset;
+        switchOffsets[8] = transform.position + xOffset + zOffset;
+
+        hintOffsets[0] = transform.position + yOffset - zOffset + Vector3.down + Vector3.back;
+        hintOffsets[1] = transform.position + yOffset + Vector3.down + Vector3.back;
+        hintOffsets[2] = transform.position + yOffset + zOffset + Vector3.down + Vector3.back;
+        hintOffsets[3] = transform.position - zOffset + Vector3.down + Vector3.back;
+        hintOffsets[4] = transform.position + Vector3.down + Vector3.back;
+        hintOffsets[5] = transform.position + zOffset + Vector3.down + Vector3.back;
+        hintOffsets[6] = transform.position - yOffset - zOffset + Vector3.down + Vector3.back;
+        hintOffsets[7] = transform.position - yOffset + Vector3.down + Vector3.back;
+        hintOffsets[8] = transform.position - yOffset + zOffset + Vector3.down + Vector3.back;
     }
 
     private void Start()
     {
-        if (transform.childCount == 0)
+        if (transform.GetChild(0).transform.childCount == 0)
             DestroyImmediate(gameObject);
-        else
+
+        //for (int i = 0; i < correct.Length; i++)
+        //{
+
+        //}
+    }
+
+    private void Update()
+    {
+        for (int i = 0; i < switchOffsets.Length; i++)
         {
-            
+            if (transform.GetChild(0).transform.GetChild(i).transform.GetChild(0).gameObject.GetComponent<Switch>().pressed)
+            {
+                if (i == correct[0] || i == correct[1] || i == correct[2])
+                    pressCounter++;
+                else
+                {
+                    pressCounter = 0;
+                    for (int j = 0; j < switchOffsets.Length; j++)
+                    {
+                        transform.GetChild(0).transform.GetChild(j).transform.GetChild(0).gameObject.GetComponent<Switch>().Reset();
+                    }
+                }
+            }
         }
+
+        if (pressCounter == correct.Length)
+            puzzleAffector.affected = true;
     }
 }

@@ -7,7 +7,6 @@ public class MovingPlattform : MonoBehaviour
     #region Variables
     public Vector3 Distance;
     private Vector3 startPoint, currentposition;
-    private float x, y, z;
     #endregion
 
     private void Start()

@@ -24,7 +24,10 @@ public class Switch : MonoBehaviour
         if (pressed)
         {
             transform.position = Vector3.Lerp(transform.position, minHeight, 5 * Time.deltaTime);
-            affector.affected = true;
+            if (affector != null)
+                affector.affected = true;
+            else
+                return;
         }
     }
 
@@ -46,5 +49,10 @@ public class Switch : MonoBehaviour
     {
         if (other.GetComponent<Rigidbody>() != null)
             pressed = false;
+    }
+
+    public void Reset()
+    {
+        transform.position = maxHeight;
     }
 }
