@@ -1,14 +1,16 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEditor;
 
+[System.Serializable]
 public class Consolecreator : MonoBehaviour
 {
     #region Variables
     public Affector puzzleAffector;
     public GameObject Light, Heavy, Red, Green;
     public int[] correct = new int[3];
-    public int pressCounter = 0;
+    public List<int> pressedIndices = new List<int>();
     private Vector3 xOffset = Vector3.right * 3;
     private Vector3 yOffset = Vector3.up * 3;
     private Vector3 zOffset = Vector3.forward * 3;
@@ -55,17 +57,28 @@ public class Consolecreator : MonoBehaviour
 
     private void randomize()
     {
-        correct[0] = (int)Mathf.Round(Random.value * 8);
-        do
+        bool contains;
+        int randInt = 0;
+        int switches = 9;
+
+        for (int i = 0; i < correct.Length; i++)
         {
-            correct[1] = (int)Mathf.Round(Random.value * 8);
+            contains = true;
+            while (contains)
+            {
+                randInt = (int)Mathf.Round(Random.value * (switches - 1));
+                contains = false;
+                for (int j = 0; j < i; j++)
+                {
+                    if (correct[j] == randInt)
+                    {
+                        contains = true;
+                        break;
+                    }
+                }
+            }
+            correct[i] = randInt;
         }
-        while (correct[1] == correct[0]);
-        do
-        {
-            correct[2] = (int)Mathf.Round(Random.value * 8);
-        }
-        while (correct[2] == correct[1] || correct[2] == correct[0]);
     }
 
     private void calcOffsets()
@@ -96,6 +109,30 @@ public class Consolecreator : MonoBehaviour
         }
     }
 
+    private bool hasIndex(int index)
+    {
+        foreach (int i in pressedIndices)
+            if (i == index) return true;
+        return false;
+    }
+
+    private bool isCorrect(int index)
+    {
+        foreach (int i in correct)
+            if (i == index) return true;
+        return false;
+    }
+
+    private void resetGrid()
+    {
+        pressedIndices.Clear();
+        for (int j = 0; j < switchOffsets.Length; j++)
+        {
+            Switch sw = transform.GetChild(0).transform.GetChild(j).transform.GetChild(0).gameObject.GetComponent<Switch>();
+            if (!sw.pressedActual) sw.Reset();
+        }
+    }
+
     private void Start()
     {
         if (transform.GetChild(0).transform.childCount == 0)
@@ -108,22 +145,21 @@ public class Consolecreator : MonoBehaviour
         {
             if (transform.GetChild(0).transform.GetChild(i).transform.GetChild(0).gameObject.GetComponent<Switch>().pressed)
             {
-                if (i == correct[0] || i == correct[1] || i == correct[2])
+                if (isCorrect(i))
                 {
-                    pressCounter++;
+                    if (!hasIndex(i))
+                    {
+                        pressedIndices.Add(i);
+                    }
                 }
                 else
                 {
-                    pressCounter = 0;
-                    for (int j = 0; j < switchOffsets.Length; j++)
-                    {
-                        transform.GetChild(0).transform.GetChild(j).transform.GetChild(0).gameObject.GetComponent<Switch>().Reset();
-                    }
+                    resetGrid();
                 }
             }
         }
 
-        if (pressCounter == correct.Length)
+        if (pressedIndices.Count == correct.Length)
             puzzleAffector.affected = true;
     }
 }

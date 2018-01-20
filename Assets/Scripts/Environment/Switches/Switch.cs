@@ -9,7 +9,10 @@ public class Switch : MonoBehaviour
     public Affector affector;
 
     [HideInInspector]
-    public bool pressed;
+    public bool pressed { get { return (pressed_actual && !pressed_previous); } }
+    public bool pressedActual { get { return pressed_actual; } }
+
+    private bool pressed_actual, pressed_previous, pressed_request, pressed_down;
     private Vector3 maxHeight, minHeight;
     #endregion
 
@@ -17,18 +20,20 @@ public class Switch : MonoBehaviour
     {
         maxHeight = transform.position;
         minHeight = maxHeight + (Vector3.down * 0.1f);
-        pressed = false;
+        pressed_actual = pressed_previous = pressed_request = pressed_down = false;
     }
     private void Update()
     {
+        SetPressed(pressed_request);
         if (pressed)
         {
-            transform.position = Vector3.Lerp(transform.position, minHeight, 5 * Time.deltaTime);
             if (affector != null)
                 affector.affected = true;
             else
                 return;
         }
+        
+        transform.position = Vector3.Lerp(transform.position, (pressed_down ? minHeight : maxHeight), 5 * Time.deltaTime);
     }
 
     private void OnTriggerEnter(Collider other)
@@ -36,23 +41,30 @@ public class Switch : MonoBehaviour
         if (isHeavy)
         {
             if (other.GetComponent<Rigidbody>() != null && other.GetComponent<Rigidbody>().mass > 5)
-                pressed = true;
+                pressed_request = true;
         }
         else
         {
             if (other.GetComponent<Rigidbody>() != null)
-                pressed = true;
+                pressed_request = true;
         }
     }
 
     private void OnTriggerExit(Collider other)
     {
         if (other.GetComponent<Rigidbody>() != null)
-            pressed = false;
+            pressed_request = false;
+    }
+
+    private void SetPressed(bool state_actual)
+    {
+        pressed_previous = pressed_actual;
+        pressed_actual = state_actual;
+        if (pressed) pressed_down = true;
     }
 
     public void Reset()
     {
-        transform.position = maxHeight;
+        pressed_down = false;
     }
 }

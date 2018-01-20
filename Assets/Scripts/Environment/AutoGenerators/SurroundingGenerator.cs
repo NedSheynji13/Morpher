@@ -83,6 +83,7 @@ public class SurroundingGenerator : MonoBehaviour
         }
         HeightOrDepth++; Length++; //To set the number back to correct
         HideWallparts();
+        //ToDo Mesh Bake
     }
     public void BuildFloor()
     {

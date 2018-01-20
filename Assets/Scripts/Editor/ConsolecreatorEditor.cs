@@ -17,5 +17,7 @@ public class ConsolecreatorEditor : Editor
             Script.BuildHeavy();
         if (GUILayout.Button("Delete"))
             Script.Delete();
+        if (GUI.changed)
+            EditorUtility.SetDirty(Script);
     }
 }
