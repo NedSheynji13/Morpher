@@ -8,7 +8,7 @@ public class Consolecreator : MonoBehaviour
     public Affector puzzleAffector;
     public GameObject Light, Heavy, Red, Green;
     public int[] correct = new int[3];
-    private int pressCounter = 0;
+    public int pressCounter = 0;
     private Vector3 xOffset = Vector3.right * 3;
     private Vector3 yOffset = Vector3.up * 3;
     private Vector3 zOffset = Vector3.forward * 3;
@@ -89,17 +89,17 @@ public class Consolecreator : MonoBehaviour
         hintOffsets[6] = transform.position - yOffset - zOffset + Vector3.down + Vector3.back;
         hintOffsets[7] = transform.position - yOffset + Vector3.down + Vector3.back;
         hintOffsets[8] = transform.position - yOffset + zOffset + Vector3.down + Vector3.back;
+
+        for (int i = 0; i < hintOffsets.Length; i++)
+        {
+            hintOffsets[i] += (Vector3.left * 5) + (Vector3.up * 5);
+        }
     }
 
     private void Start()
     {
         if (transform.GetChild(0).transform.childCount == 0)
             DestroyImmediate(gameObject);
-
-        //for (int i = 0; i < correct.Length; i++)
-        //{
-
-        //}
     }
 
     private void Update()
@@ -109,7 +109,9 @@ public class Consolecreator : MonoBehaviour
             if (transform.GetChild(0).transform.GetChild(i).transform.GetChild(0).gameObject.GetComponent<Switch>().pressed)
             {
                 if (i == correct[0] || i == correct[1] || i == correct[2])
+                {
                     pressCounter++;
+                }
                 else
                 {
                     pressCounter = 0;
