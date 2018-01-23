@@ -50,10 +50,6 @@ public class Levelchanger : MonoBehaviour
 
     void OnTriggerStay(Collider other)
     {
-        SaveAndLoad.Save();
-        if (other.gameObject.GetComponent<Rigidbody>() != null)
-        {
-            Invoke("Change", 0.5f);
-        }
+        if (other.gameObject.GetComponent<Rigidbody>() != null) Invoke("Change", 0.5f);
     }
 }

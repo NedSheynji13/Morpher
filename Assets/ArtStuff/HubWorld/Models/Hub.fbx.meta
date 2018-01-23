@@ -1,0 +1,222 @@
+fileFormatVersion: 2
+guid: 5329d32ce8e6eee439b62bc4e01b35d5
+timeCreated: 1516709384
+licenseType: Free
+ModelImporter:
+  serializedVersion: 22
+  fileIDToRecycleName:
+    100000: Bildschirme
+    100002: Box1
+    100004: Box2
+    100006: Boxen2
+    100008: Boxen3
+    100010: Bunsenbrenner
+    100012: Erlenmeyerkolben
+    100014: Glas
+    100016: //RootNode
+    100018: Incubator
+    100020: Konsole
+    100022: Metall
+    100024: Monitor
+    100026: Portal1
+    100028: Portal2
+    100030: Portal3
+    100032: Portal4
+    100034: Portal5
+    100036: Raum
+    100038: Regal
+    100040: Regal 1
+    100042: Rohre
+    100044: Standzylinder
+    400000: Bildschirme
+    400002: Box1
+    400004: Box2
+    400006: Boxen2
+    400008: Boxen3
+    400010: Bunsenbrenner
+    400012: Erlenmeyerkolben
+    400014: Glas
+    400016: //RootNode
+    400018: Incubator
+    400020: Konsole
+    400022: Metall
+    400024: Monitor
+    400026: Portal1
+    400028: Portal2
+    400030: Portal3
+    400032: Portal4
+    400034: Portal5
+    400036: Raum
+    400038: Regal
+    400040: Regal 1
+    400042: Rohre
+    400044: Standzylinder
+    2300000: Bildschirme
+    2300002: Box1
+    2300004: Box2
+    2300006: Boxen2
+    2300008: Boxen3
+    2300010: Bunsenbrenner
+    2300012: Erlenmeyerkolben
+    2300014: Glas
+    2300016: Konsole
+    2300018: Metall
+    2300020: Monitor
+    2300022: Portal1
+    2300024: Portal2
+    2300026: Portal3
+    2300028: Portal4
+    2300030: Portal5
+    2300032: Raum
+    2300034: Regal 1
+    2300036: Rohre
+    2300038: Standzylinder
+    3300000: Bildschirme
+    3300002: Box1
+    3300004: Box2
+    3300006: Boxen2
+    3300008: Boxen3
+    3300010: Bunsenbrenner
+    3300012: Erlenmeyerkolben
+    3300014: Glas
+    3300016: Konsole
+    3300018: Metall
+    3300020: Monitor
+    3300022: Portal1
+    3300024: Portal2
+    3300026: Portal3
+    3300028: Portal4
+    3300030: Portal5
+    3300032: Raum
+    3300034: Regal 1
+    3300036: Rohre
+    3300038: Standzylinder
+    4300000: Monitor
+    4300002: Raum
+    4300004: Glas
+    4300006: Metall
+    4300008: Rohre
+    4300010: Konsole
+    4300012: Portal1
+    4300014: Portal2
+    4300016: Portal3
+    4300018: Portal4
+    4300020: Portal5
+    4300022: Bildschirme
+    4300024: Box1
+    4300026: Boxen2
+    4300028: Regal
+    4300030: Boxen3
+    4300032: Erlenmeyerkolben
+    4300034: Standzylinder
+    4300036: Box2
+    4300038: Bunsenbrenner
+    9500000: //RootNode
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Incubator_Glas
+    second: {fileID: 2100000, guid: 32f449d3baf41dc47ab6b3d0159bd398, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Incubator_Metall
+    second: {fileID: 2100000, guid: 32f449d3baf41dc47ab6b3d0159bd398, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Konsole1
+    second: {fileID: 2100000, guid: ddb53eaff81f960498231b473645f853, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Monitor1
+    second: {fileID: 2100000, guid: 5a2946b8fed4d564ab1d3e19977c5db0, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Portal
+    second: {fileID: 2100000, guid: d8a5948ea1a5f064fb66343ec93adcc0, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: lambert1
+    second: {fileID: 2100000, guid: e62d943f25a07254882f02ce51de1c55, type: 2}
+  materials:
+    importMaterials: 1
+    materialName: 0
+    materialSearch: 1
+    materialLocation: 0
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    resampleCurves: 1
+    optimizeGameObjects: 0
+    motionNodeName: 
+    rigImportErrors: 
+    rigImportWarnings: 
+    animationImportErrors: 
+    animationImportWarnings: 
+    animationRetargetingWarnings: 
+    animationDoRetargetingWarnings: 0
+    importAnimatedCustomProperties: 0
+    animationCompression: 1
+    animationRotationError: 0.5
+    animationPositionError: 0.5
+    animationScaleError: 0.5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    extraUserProperties: []
+    clipAnimations: []
+    isReadable: 1
+  meshes:
+    lODScreenPercentages: []
+    globalScale: 0.01
+    meshCompression: 0
+    addColliders: 0
+    importVisibility: 1
+    importBlendShapes: 1
+    importCameras: 0
+    importLights: 0
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    optimizeMeshForGPU: 1
+    keepQuads: 0
+    weldVertices: 1
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVPackMargin: 4
+    useFileScale: 1
+  tangentSpace:
+    normalSmoothAngle: 60
+    normalImportMode: 0
+    tangentImportMode: 3
+    normalCalculationMode: 4
+  importAnimation: 0
+  copyAvatar: 0
+  humanDescription:
+    serializedVersion: 2
+    human: []
+    skeleton: []
+    armTwist: 0.5
+    foreArmTwist: 0.5
+    upperLegTwist: 0.5
+    legTwist: 0.5
+    armStretch: 0.05
+    legStretch: 0.05
+    feetSpacing: 0
+    rootMotionBoneName: 
+    rootMotionBoneRotation: {x: 0, y: 0, z: 0, w: 1}
+    hasTranslationDoF: 0
+    hasExtraRoot: 0
+    skeletonHasParents: 1
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  animationType: 0
+  humanoidOversampling: 1
+  additionalBone: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

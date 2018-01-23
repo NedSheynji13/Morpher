@@ -127,10 +127,6 @@ public class Morphing : MonoBehaviour
                 }
             }
         }
-        if (Input.GetKeyUp(KeyCode.Escape))
-        {
-            SceneManager.LoadScene(0);
-        }
     }
 
     #region Methods for the morphing size controls, gravity controls, form changes, etc.

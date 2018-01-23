@@ -24,17 +24,11 @@ public class MovementBridgeForm : MonoBehaviour
         player = null;
         move = false;
         LinePoints = new Vector3[LinePointGroup.childCount];
-        for (int i = 0; i < LinePoints.Length; i++)
-        {
-            LinePoints[i] = LinePointGroup.GetChild(i).position;
-        }
+        for (int i = 0; i < LinePoints.Length; i++) LinePoints[i] = LinePointGroup.GetChild(i).position;
 
         connection.positionCount = LinePoints.Length + 2;
         connection.SetPosition(0, transform.position + new Vector3(0, 1.531444f, 0)); //Set the first line segment always to the position of the bridge
-        for (int i = 0; i < LinePoints.Length; i++)
-        {
-            connection.SetPosition(i + 1, LinePoints[i]);
-        }
+        for (int i = 0; i < LinePoints.Length; i++) connection.SetPosition(i + 1, LinePoints[i]);
         connection.SetPosition(connection.positionCount - 1, connectedBridge.transform.position + new Vector3(0, 1.531444f, 0)); //Set the last line segment always to the position of the connected bridge
         SpawnPoint = connectedBridge.transform.position + new Vector3(0, 2, 0);
     }
@@ -113,9 +107,6 @@ public class MovementBridgeForm : MonoBehaviour
 
     private void DestroyAudiosource()
     {
-        foreach (GameObject Sound in GameObject.FindGameObjectsWithTag("Sound"))
-        {
-            Destroy(Sound);
-        }
+        foreach (GameObject Sound in GameObject.FindGameObjectsWithTag("Sound")) Destroy(Sound);
     }
 }

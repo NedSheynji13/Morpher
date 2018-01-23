@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class CheckPoint : MonoBehaviour
 {
-    private void OnTriggerStay(Collider other)
+    private void OnTriggerEnter(Collider other)
     {
         if (other.GetComponent<Rigidbody>() != null)
         {
