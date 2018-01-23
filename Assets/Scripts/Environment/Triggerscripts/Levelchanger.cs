@@ -36,7 +36,7 @@ public class Levelchanger : MonoBehaviour
         BeginFade(-1);
     }
 
-    void Change()
+    private void Change()
     {
         StartCoroutine(ChangeWithFading());
     }
@@ -48,7 +48,7 @@ public class Levelchanger : MonoBehaviour
         SceneManager.LoadScene(SceneIndex);
     }
 
-    void OnTriggerStay(Collider other)
+    private void OnTriggerEnter(Collider other)
     {
         if (other.gameObject.GetComponent<Rigidbody>() != null) Invoke("Change", 0.5f);
     }

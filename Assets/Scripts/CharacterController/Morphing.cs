@@ -55,8 +55,7 @@ public class Morphing : MonoBehaviour
         }
         try
         {
-            Vector3 temp;
-            temp = SaveAndLoad.LoadPosition();
+            Vector3 temp = SaveAndLoad.LoadPosition();
             currentForm.transform.localPosition = temp;
         }
         catch

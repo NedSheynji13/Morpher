@@ -58,6 +58,6 @@ MonoBehaviour:
   RightDown: {fileID: 1497298586725364, guid: a2c4677a1d98c5b4db95ec3a09e5cbe0, type: 2}
   RightUp: {fileID: 1723536724376160, guid: 4db21c2c2b93c50448b73f2d136b81eb, type: 2}
   Vertical: {fileID: 1310074741041382, guid: 6a0675926dca26945875eef73f0208cd, type: 2}
-  IsWall: 1
+  DoubleSided: 1
   HeightOrDepth: 5
   Length: 5

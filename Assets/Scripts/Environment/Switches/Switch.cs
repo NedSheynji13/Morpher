@@ -19,7 +19,7 @@ public class Switch : MonoBehaviour
     private void Start()
     {
         maxHeight = transform.position;
-        minHeight = maxHeight + (Vector3.down * 0.1f);
+        minHeight = maxHeight + (transform.rotation * Vector3.down * 0.1f);
         pressed_actual = pressed_previous = pressed_request = pressed_down = false;
     }
     private void Update()

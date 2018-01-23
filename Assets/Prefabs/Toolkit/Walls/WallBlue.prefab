@@ -52,13 +52,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Empty: {fileID: 1544312129952534, guid: 65df11778e40c3540a2157c31a6031e0, type: 2}
-  Vertical: {fileID: 1310074741041382, guid: 82b4f26c515452248800ec0895ccb1a6, type: 2}
   Horizontal: {fileID: 1781877512358538, guid: a83dcf8243275924e87a3eae1dd168b5, type: 2}
-  LeftUp: {fileID: 1869222575833962, guid: f703e3e4c5c5cd94a9d332ca62662e75, type: 2}
   LeftDown: {fileID: 1104107927295654, guid: 4014ed08c41dcc94ba1c2438309fbe07, type: 2}
-  RightUp: {fileID: 1723536724376160, guid: 0122195cb7bd56147ad24628cb0bece4, type: 2}
+  LeftUp: {fileID: 1869222575833962, guid: f703e3e4c5c5cd94a9d332ca62662e75, type: 2}
   RightDown: {fileID: 1497298586725364, guid: 6e3612098ae6b594cad52c156f89973e, type: 2}
-  IsWall: 1
-  HideInHierarchy: 1
+  RightUp: {fileID: 1723536724376160, guid: 0122195cb7bd56147ad24628cb0bece4, type: 2}
+  Vertical: {fileID: 1310074741041382, guid: 82b4f26c515452248800ec0895ccb1a6, type: 2}
+  DoubleSided: 1
   HeightOrDepth: 5
   Length: 5

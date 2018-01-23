@@ -41,8 +41,7 @@ public class HubWorldManager : MonoBehaviour
         {
             if (unlockedWorlds >= i)
             {
-                GameObject temp = Instantiate(Changer, portalpositions[i - 1], Quaternion.identity);
-                temp.GetComponent<Levelchanger>().SceneIndex = i;
+                Instantiate(Changer, portalpositions[i - 1], Quaternion.identity).GetComponent<Levelchanger>().SceneIndex = i;
                 Instantiate(Accessable, portalpositions[i - 1], rot);
             }
             else

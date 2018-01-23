@@ -5,18 +5,9 @@ using UnityEngine.SceneManagement;
 
 public class MainManager : MonoBehaviour
 {
-    #region Variables
-    private int loadedSceneIndex;
-    #endregion
-
-    void Start()
-    {
-        loadedSceneIndex = SaveAndLoad.LoadScene();
-    }
-
     public void LoadGame()
     {
-        SceneManager.LoadScene(loadedSceneIndex);
+        SceneManager.LoadScene(SaveAndLoad.LoadScene());
     }
 
     public void NewGame()
@@ -28,5 +19,4 @@ public class MainManager : MonoBehaviour
     {
         Application.Quit();
     }
-
 }

@@ -58,6 +58,6 @@ MonoBehaviour:
   RightDown: {fileID: 1497298586725364, guid: 1996bcf6b2a4c1f4185b7782bd276f76, type: 2}
   RightUp: {fileID: 1723536724376160, guid: cda6142417c7d6d45abce0e24702ece2, type: 2}
   Vertical: {fileID: 1310074741041382, guid: d1c9fea034a96fc4c8dd345dbd43690e, type: 2}
-  DoubleSided: 0
+  DoubleSided: 1
   HeightOrDepth: 5
   Length: 5
