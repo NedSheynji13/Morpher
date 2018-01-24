@@ -82,7 +82,7 @@ public class MovementSpringForm : MonoBehaviour
         colCount++;
         for (int i = 0; i < col.contacts.Length; i++)
         {
-            if (col.contacts[i].normal == Vector3.up)
+            if (transform.position.y - col.contacts[i].point.y <= 0.74f)
                 Morphing.grounded = true;
             else
             {

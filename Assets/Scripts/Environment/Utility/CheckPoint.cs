@@ -8,7 +8,7 @@ public class CheckPoint : MonoBehaviour
     {
         if (other.GetComponent<Rigidbody>() != null)
         {
-            SaveAndLoad.SavePosition(other.transform.position);
+            SaveAndLoad.SavePosition(transform.position);
         }
     }
 }

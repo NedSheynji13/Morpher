@@ -11,13 +11,17 @@ public class Affector : MonoBehaviour
 	
 	void Update () 
 	{
-        if (affected) transform.GetComponent<IMove>().Move(2.0f);
+        if (affected)
+        {
+            try { transform.GetComponent<IMove>().Move(); }
+            catch { affected = false; }
+        }
 	}
 }
 
 public interface IMove
 {
-    void Move(object o);
+    void Move();
 }
 
 
