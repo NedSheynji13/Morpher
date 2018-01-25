@@ -11,7 +11,7 @@ public class CameraControl : MonoBehaviour
 
     void Start()
     {
-        inputAngle = new Vector3(20, 0, 0); //Sets the start position of the camera more conviniently
+        inputAngle = new Vector3(0, 0, 0); //Sets the start position of the camera more conviniently
     }
 
     void Update()
@@ -61,7 +61,7 @@ public class CameraControl : MonoBehaviour
         else if (inputAngle.y < 0)
             inputAngle.y += 360;
 
-        inputAngle.x = Mathf.Clamp(inputAngle.x, 0, MaxLookDown);   //Clamps how high/low and the user can turn the camera. Prevents the camera from looking through the ground.
+        inputAngle.x = Mathf.Clamp(inputAngle.x, -10, MaxLookDown);   //Clamps how high/low and the user can turn the camera. Prevents the camera from looking through the ground.
         transform.eulerAngles = inputAngle;                         //Sets the rotation of the camera according to the users preference calculated earlier
     }
 
@@ -84,7 +84,7 @@ public class CameraControl : MonoBehaviour
             inputAngle.y += 90f;
         }
 
-        inputAngle.x = Mathf.Clamp(inputAngle.x, 10, MaxLookDown);   //Clamps how high/low and the user can turn the camera. Prevents the camera from looking through the ground.
+        inputAngle.x = Mathf.Clamp(inputAngle.x, -10, MaxLookDown);   //Clamps how high/low and the user can turn the camera. Prevents the camera from looking through the ground.
 
         transform.rotation = Quaternion.Lerp(transform.rotation, Quaternion.Euler(inputAngle), 10 * Time.deltaTime);
         //Using the Quaternion rotation to avoid overturning over or under +-360 degrees life with eulerAngles
