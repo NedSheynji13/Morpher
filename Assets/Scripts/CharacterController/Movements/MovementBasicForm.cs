@@ -27,6 +27,7 @@ public class MovementBasicForm : MonoBehaviour
 
     void FixedUpdate()
     {
+        Debug.Log(physix.velocity.y);
         //Using GetAxis results in some kind of acceleration. The object needs some time to get on speed
         //using GetAxisRaw allows instant movement into the given direction with infinite acceleration
         
