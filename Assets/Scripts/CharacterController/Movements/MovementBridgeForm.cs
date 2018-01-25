@@ -74,6 +74,7 @@ public class MovementBridgeForm : MonoBehaviour
 
             if (player.transform.position == connection.GetPosition(connection.positionCount - 1))
             {
+                Morphing.forced = true;
                 physix.velocity = Vector3.zero;
                 player.transform.position = SpawnPoint;
                 player.GetComponent<Rigidbody>().useGravity = true;

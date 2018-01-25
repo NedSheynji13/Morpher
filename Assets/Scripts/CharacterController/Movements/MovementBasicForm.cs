@@ -27,7 +27,6 @@ public class MovementBasicForm : MonoBehaviour
 
     void FixedUpdate()
     {
-        Debug.Log(physix.velocity.y);
         //Using GetAxis results in some kind of acceleration. The object needs some time to get on speed
         //using GetAxisRaw allows instant movement into the given direction with infinite acceleration
         
@@ -111,7 +110,7 @@ public class MovementBasicForm : MonoBehaviour
     private IEnumerator EdgeJump()
     {
         CRunning = true;
-        yield return new WaitForSeconds(0.2f);
+        yield return new WaitForSeconds(0.1f);
         if (!Morphing.grounded)
             jumpBlock = true;
         else
