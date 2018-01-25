@@ -12,6 +12,7 @@ public class MovementBridgeForm : MonoBehaviour
     private Vector3[] LinePoints;
     private Vector3 SpawnPoint, basePosition, basePositionPlayer;
     private GameObject player, lilspheretemp, temp;
+    private Rigidbody physix;
     private bool move, playing = false;
     private int nextposition = 0;
     private float time;
@@ -39,6 +40,7 @@ public class MovementBridgeForm : MonoBehaviour
         {
             if (Input.GetKey(KeyCode.F) && (Morphing.abilities.Bridge == (Morphing.unlocked & Morphing.abilities.Bridge)))
             {
+                physix = other.GetComponent<Rigidbody>();
                 player = other.gameObject;
                 basePositionPlayer = player.transform.position;
                 move = true;
@@ -72,6 +74,7 @@ public class MovementBridgeForm : MonoBehaviour
 
             if (player.transform.position == connection.GetPosition(connection.positionCount - 1))
             {
+                physix.velocity = Vector3.zero;
                 player.transform.position = SpawnPoint;
                 player.GetComponent<Rigidbody>().useGravity = true;
                 player = null;
