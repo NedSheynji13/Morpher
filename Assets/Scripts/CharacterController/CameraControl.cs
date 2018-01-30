@@ -4,24 +4,24 @@ using UnityEngine;
 
 public class CameraControl : MonoBehaviour
 {
-    public float sensivity;         //Defines how smooth the camera is moving
-    public float MaxLookDown;       //Defines how far the user can turn the camera looking down
+    public float sensivity;
     private Vector3 inputAngle;     //Used for communication with unity's input manager
-    private float cubeTurn;         //Used for instant turns in cube form
-    private float MinFoV = -2f;
-    private float MaxFoV = -5f;
-    private float FoV = -5f;
+    private float cubeTurn, MinFoV, MaxFoV, FoV;
+    private Ray[] wallRays;
 
     void Start()
     {
-        inputAngle = new Vector3(0, 0, 0); //Sets the start position of the camera more conviniently
+        inputAngle = new Vector3(0, 0, 0);
+        FoV = Camera.main.transform.localPosition.z;
+        MaxFoV = FoV;
+        MinFoV = MaxFoV / 2.5f;
+        wallRays = new Ray[8];
     }
 
     void Update()
     {
         FollowMorpher(Morphing.currentForm); //Follows the current active object and also changes depending on the form
         Zoom();
-        WallZoom();
     }
 
     /// <summary>
@@ -66,7 +66,7 @@ public class CameraControl : MonoBehaviour
         else if (inputAngle.y < 0)
             inputAngle.y += 360;
 
-        inputAngle.x = Mathf.Clamp(inputAngle.x, -10, MaxLookDown);   //Clamps how high/low and the user can turn the camera. Prevents the camera from looking through the ground.
+        inputAngle.x = Mathf.Clamp(inputAngle.x, -10, 40);   //Clamps how high/low and the user can turn the camera. Prevents the camera from looking through the ground.
         transform.localRotation = Quaternion.Euler(inputAngle);            //Sets the rotation of the camera according to the users preference calculated earlier
     }
 
@@ -89,7 +89,7 @@ public class CameraControl : MonoBehaviour
             inputAngle.y += 90f;
         }
 
-        inputAngle.x = Mathf.Clamp(inputAngle.x, -10, MaxLookDown);   //Clamps how high/low and the user can turn the camera. Prevents the camera from looking through the ground.
+        inputAngle.x = Mathf.Clamp(inputAngle.x, -10, 40);   //Clamps how high/low and the user can turn the camera. Prevents the camera from looking through the ground.
 
         transform.localRotation = Quaternion.Lerp(transform.localRotation, Quaternion.Euler(inputAngle), 10 * Time.deltaTime);
         //Using the Quaternion rotation to avoid overturning over or under +-360 degrees life with eulerAngles
@@ -113,16 +113,32 @@ public class CameraControl : MonoBehaviour
 
     void Zoom()
     {
-        float temp = Camera.main.transform.localPosition.z;
-        FoV += (Input.GetAxis("Mouse ScrollWheel"));
-        if (FoV < -5) FoV = -5;
-        else if (FoV > -2) FoV = -2;
-        temp = Mathf.Lerp(Camera.main.transform.localPosition.z, FoV, Time.time * 10);
-        Camera.main.transform.localPosition = new Vector3 (Camera.main.transform.localPosition.x, Camera.main.transform.localPosition.y, temp);
-    }
+        RaycastHit[] wallHit = new RaycastHit[wallRays.Length];
+        Vector3 UR = Camera.main.ViewportToWorldPoint(new Vector3(1, 1, Camera.main.nearClipPlane)).normalized;
+        Vector3 UL = Camera.main.ViewportToWorldPoint(new Vector3(0, 1, Camera.main.nearClipPlane)).normalized;
+        Vector3 DR = Camera.main.ViewportToWorldPoint(new Vector3(1, 0, Camera.main.nearClipPlane)).normalized;
+        Vector3 DL = Camera.main.ViewportToWorldPoint(new Vector3(0, 0, Camera.main.nearClipPlane)).normalized;
+        wallRays[0] = new Ray(transform.position, DL);
+        wallRays[1] = new Ray(transform.position, DR);
+        wallRays[2] = new Ray(transform.position, UR);
+        wallRays[3] = new Ray(transform.position, UL);
+        for (int i = 0; i < wallRays.Length; i++) Physics.Raycast(wallRays[i], out wallHit[i]);
 
-    void WallZoom()
-    {
-
+        for (int i = 0; i < wallRays.Length; i++)
+        {
+            if (-Vector3.Distance(wallHit[i].point, transform.position) > MaxFoV)
+            {
+                FoV = -Vector3.Distance(wallHit[i].point, transform.position);
+                break;
+            }
+            else if (-Vector3.Distance(wallHit[i].point, transform.position) > MinFoV)
+            {
+                FoV = MinFoV;
+                break;
+            }
+            else
+                FoV = MaxFoV;
+        }
+        Camera.main.transform.localPosition = Vector3.Lerp(Camera.main.transform.localPosition, new Vector3(0, 1, FoV), Time.deltaTime * 5);
     }
 }
