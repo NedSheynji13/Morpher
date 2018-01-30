@@ -8,6 +8,9 @@ public class CameraControl : MonoBehaviour
     public float MaxLookDown;       //Defines how far the user can turn the camera looking down
     private Vector3 inputAngle;     //Used for communication with unity's input manager
     private float cubeTurn;         //Used for instant turns in cube form
+    private float MinFoV = -2f;
+    private float MaxFoV = -5f;
+    private float FoV = -5f;
 
     void Start()
     {
@@ -17,6 +20,8 @@ public class CameraControl : MonoBehaviour
     void Update()
     {
         FollowMorpher(Morphing.currentForm); //Follows the current active object and also changes depending on the form
+        Zoom();
+        WallZoom();
     }
 
     /// <summary>
@@ -62,7 +67,7 @@ public class CameraControl : MonoBehaviour
             inputAngle.y += 360;
 
         inputAngle.x = Mathf.Clamp(inputAngle.x, -10, MaxLookDown);   //Clamps how high/low and the user can turn the camera. Prevents the camera from looking through the ground.
-        transform.eulerAngles = inputAngle;                         //Sets the rotation of the camera according to the users preference calculated earlier
+        transform.localRotation = Quaternion.Euler(inputAngle);            //Sets the rotation of the camera according to the users preference calculated earlier
     }
 
     /// <summary>
@@ -86,7 +91,7 @@ public class CameraControl : MonoBehaviour
 
         inputAngle.x = Mathf.Clamp(inputAngle.x, -10, MaxLookDown);   //Clamps how high/low and the user can turn the camera. Prevents the camera from looking through the ground.
 
-        transform.rotation = Quaternion.Lerp(transform.rotation, Quaternion.Euler(inputAngle), 10 * Time.deltaTime);
+        transform.localRotation = Quaternion.Lerp(transform.localRotation, Quaternion.Euler(inputAngle), 10 * Time.deltaTime);
         //Using the Quaternion rotation to avoid overturning over or under +-360 degrees life with eulerAngles
         //transform.eulerAngles = Vector3.Lerp(transform.eulerAngles, inputAngle, 10 * Time.deltaTime);
     }
@@ -102,7 +107,22 @@ public class CameraControl : MonoBehaviour
             inputAngle.y -= 360;
         else if (inputAngle.y < 0)
             inputAngle.y += 360;
-        
-        transform.eulerAngles = inputAngle;                         //Sets the rotation of the camera according to the users preference calculated earlier
+
+        transform.localRotation = Quaternion.Euler(inputAngle);                         //Sets the rotation of the camera according to the users preference calculated earlier
+    }
+
+    void Zoom()
+    {
+        float temp = Camera.main.transform.localPosition.z;
+        FoV += (Input.GetAxis("Mouse ScrollWheel"));
+        if (FoV < -5) FoV = -5;
+        else if (FoV > -2) FoV = -2;
+        temp = Mathf.Lerp(Camera.main.transform.localPosition.z, FoV, Time.time * 10);
+        Camera.main.transform.localPosition = new Vector3 (Camera.main.transform.localPosition.x, Camera.main.transform.localPosition.y, temp);
+    }
+
+    void WallZoom()
+    {
+
     }
 }
