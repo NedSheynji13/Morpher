@@ -5,6 +5,7 @@ using UnityEngine;
 public class CameraControl : MonoBehaviour
 {
     public float sensivity;
+    public LayerMask ignorePlayer;
     private Vector3 inputAngle;     //Used for communication with unity's input manager
     private float cubeTurn, MinFoV, MaxFoV, FoV;
     private Ray wallRay;
@@ -21,7 +22,6 @@ public class CameraControl : MonoBehaviour
     void Update()
     {
         FollowMorpher(Morphing.currentForm); //Follows the current active object and also changes depending on the form
-        Zoom();
     }
 
     /// <summary>
@@ -39,7 +39,7 @@ public class CameraControl : MonoBehaviour
                 FollowCubeForm();
                 break;
             case "SpringForm":
-                FollowBasicForm();
+                FollowSpringForm();
                 break;
             case "StarForm":
                 FollowStarForm();
@@ -56,6 +56,7 @@ public class CameraControl : MonoBehaviour
     /// </summary>
     void FollowBasicForm()  //The Camera follow behaviour for the basic form
     {
+        Zoom();
         //Takes informations from the mouse input, read by the input manager and recalculates them to allow smoother camera turns
         inputAngle.y += Input.GetAxis("Mouse X") * sensivity * Time.deltaTime;
         inputAngle.x += Input.GetAxis("Mouse Y") * sensivity * Time.deltaTime;
@@ -75,6 +76,7 @@ public class CameraControl : MonoBehaviour
     /// </summary>
     void FollowCubeForm()
     {
+        Zoom();
         cubeTurn += Input.GetAxis("Mouse X") * sensivity * Time.deltaTime;
         inputAngle.x += Input.GetAxis("Mouse Y") * sensivity * Time.deltaTime;
 
@@ -96,8 +98,25 @@ public class CameraControl : MonoBehaviour
         //transform.eulerAngles = Vector3.Lerp(transform.eulerAngles, inputAngle, 10 * Time.deltaTime);
     }
 
+    void FollowSpringForm()  //The Camera follow behaviour for the basic form
+    {
+        //Takes informations from the mouse input, read by the input manager and recalculates them to allow smoother camera turns
+        inputAngle.y += Input.GetAxis("Mouse X") * sensivity * Time.deltaTime;
+        inputAngle.x += Input.GetAxis("Mouse Y") * sensivity * Time.deltaTime;
+
+        //Snaps the rotation of the basic form between 0 and 360 degrees
+        if (inputAngle.y > 360)
+            inputAngle.y -= 360;
+        else if (inputAngle.y < 0)
+            inputAngle.y += 360;
+
+        inputAngle.x = Mathf.Clamp(inputAngle.x, -10, 40);   //Clamps how high/low and the user can turn the camera. Prevents the camera from looking through the ground.
+        transform.localRotation = Quaternion.Euler(inputAngle);            //Sets the rotation of the camera according to the users preference calculated earlier
+    }
+
     void FollowStarForm()
     {
+        Zoom();
         //Takes informations from the mouse input, read by the input manager and recalculates them to allow smoother camera turns
         inputAngle.y += Input.GetAxis("Mouse X") * sensivity * Time.deltaTime;
         inputAngle.x += Input.GetAxis("Mouse Y") * sensivity * Time.deltaTime;
@@ -114,8 +133,9 @@ public class CameraControl : MonoBehaviour
     void Zoom()
     {
         RaycastHit wallHit = new RaycastHit();
+        Debug.DrawRay(transform.position, Camera.main.transform.position - transform.position);
         wallRay = new Ray(transform.position, Camera.main.transform.position - transform.position);
-        Physics.Raycast(wallRay, out wallHit);
+        Physics.Raycast(wallRay, out wallHit, ignorePlayer);
         if (-Vector3.Distance(wallHit.point, transform.position) > MaxFoV) FoV = -Vector3.Distance(wallHit.point, transform.position) + 0.5f;
         else if (-Vector3.Distance(wallHit.point, transform.position) > MinFoV) FoV = MinFoV;
         else FoV = MaxFoV;

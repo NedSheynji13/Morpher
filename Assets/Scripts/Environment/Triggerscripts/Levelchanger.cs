@@ -50,6 +50,7 @@ public class Levelchanger : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
+        if (SceneManager.GetActiveScene() == SceneManager.GetSceneByName("Tutorial")) SaveAndLoad.SaveScene();
         if (other.gameObject.GetComponent<Rigidbody>() != null) Invoke("Change", 0.5f);
     }
 }

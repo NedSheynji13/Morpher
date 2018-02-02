@@ -97,6 +97,7 @@ public class Morphing : MonoBehaviour
 
     private void FixedUpdate()
     {
+        Debug.Log(unlocked);
         Pos = currentForm.transform.localPosition;  //Checks the objects current position
         //Pos = currentForm.transform.localPosition;  //Checks the objects current position
         //General Scaling Lerp which runs constantly in the background. Only the object, its Active state and its wantedscale to which he lerps changes

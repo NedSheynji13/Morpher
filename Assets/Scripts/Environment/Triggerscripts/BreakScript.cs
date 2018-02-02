@@ -29,6 +29,20 @@ public class BreakScript : MonoBehaviour
         {
             pieces[i].transform.localScale = Vector3.Lerp(pieces[i].transform.localScale, scaling, 5 * Time.deltaTime);
         }
+        if (crashed)
+        {
+            Destroy(transform.GetComponent<Collider>());
+            Destroy(transform.GetComponent<Collider>());
+            for (int i = 0; i < transform.childCount; i++)
+            {
+                pieces[i].AddComponent<BoxCollider>();
+                pieces[i].AddComponent<Rigidbody>();
+                pieces[i].GetComponent<BoxCollider>().material = bounce;
+                pieces[i].GetComponent<Rigidbody>().velocity = (new Vector3(Random.value - 0.5f, Random.value - 0.5f, Random.value - 0.5f) * 100);
+                StartCoroutine(ScaleDown());
+            }
+        }
+
     }
 
     private void OnTriggerEnter(Collider other)
@@ -36,19 +50,7 @@ public class BreakScript : MonoBehaviour
         if (!crashed)
         {
             if (other.GetComponent<Rigidbody>() != null && other.GetComponent<Rigidbody>().mass > 5)
-            {
-                Destroy(transform.GetComponent<BoxCollider>());
-                Destroy(transform.GetComponent<BoxCollider>());
-                for (int i = 0; i < transform.childCount; i++)
-                {
-                    pieces[i].AddComponent<BoxCollider>();
-                    pieces[i].AddComponent<Rigidbody>();
-                    pieces[i].GetComponent<BoxCollider>().material = bounce;
-                    pieces[i].GetComponent<Rigidbody>().velocity = (new Vector3(Random.value - 0.5f, Random.value - 0.5f, Random.value - 0.5f) * 100);
-                    StartCoroutine(ScaleDown());
-                }
                 crashed = true;
-            }
         }
     }
 

@@ -80,6 +80,7 @@ public static class SaveAndLoad
     {
         string pathScene = Path.Combine(Application.persistentDataPath, "positionscene.txt");
         using (BinaryReader reader = new BinaryReader(File.OpenRead(pathScene)))
-            return reader.Read();
+            if (reader.Read() > 5) return 1;
+            else return reader.Read();
     }
 }

@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using System.IO;
 
 public class MainManager : MonoBehaviour
 {
@@ -12,6 +13,7 @@ public class MainManager : MonoBehaviour
 
     public void NewGame()
     {
+        File.Delete(Path.Combine(Application.persistentDataPath, "forms.txt"));
         SceneManager.LoadScene(7);
     }
 

@@ -8,7 +8,7 @@ public class PlattformSpinningBall : MonoBehaviour
 
     private void Start()
     {
-        Player = GameObject.Find("Player");
+        Player = GameObject.Find("Morpher");
     }
 
     void Update()
@@ -35,7 +35,7 @@ public class PlattformSpinningBall : MonoBehaviour
     {
         if (other.GetComponent<Rigidbody>() != null)
         {
-            Player.transform.parent = null;
+            Player.transform.parent = GameObject.Find("Player").transform;
             Morphing.morphing = false;
         }
     }
