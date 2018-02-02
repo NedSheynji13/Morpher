@@ -7,7 +7,7 @@ public class CameraControl : MonoBehaviour
     public float sensivity;
     private Vector3 inputAngle;     //Used for communication with unity's input manager
     private float cubeTurn, MinFoV, MaxFoV, FoV;
-    private Ray[] wallRays;
+    private Ray wallRay;
 
     void Start()
     {
@@ -15,7 +15,7 @@ public class CameraControl : MonoBehaviour
         FoV = Camera.main.transform.localPosition.z;
         MaxFoV = FoV;
         MinFoV = MaxFoV / 2.5f;
-        wallRays = new Ray[8];
+        wallRay = new Ray();
     }
 
     void Update()
@@ -113,32 +113,12 @@ public class CameraControl : MonoBehaviour
 
     void Zoom()
     {
-        RaycastHit[] wallHit = new RaycastHit[wallRays.Length];
-        Vector3 UR = Camera.main.ViewportToWorldPoint(new Vector3(1, 1, Camera.main.nearClipPlane)).normalized;
-        Vector3 UL = Camera.main.ViewportToWorldPoint(new Vector3(0, 1, Camera.main.nearClipPlane)).normalized;
-        Vector3 DR = Camera.main.ViewportToWorldPoint(new Vector3(1, 0, Camera.main.nearClipPlane)).normalized;
-        Vector3 DL = Camera.main.ViewportToWorldPoint(new Vector3(0, 0, Camera.main.nearClipPlane)).normalized;
-        wallRays[0] = new Ray(transform.position, DL);
-        wallRays[1] = new Ray(transform.position, DR);
-        wallRays[2] = new Ray(transform.position, UR);
-        wallRays[3] = new Ray(transform.position, UL);
-        for (int i = 0; i < wallRays.Length; i++) Physics.Raycast(wallRays[i], out wallHit[i]);
-
-        for (int i = 0; i < wallRays.Length; i++)
-        {
-            if (-Vector3.Distance(wallHit[i].point, transform.position) > MaxFoV)
-            {
-                FoV = -Vector3.Distance(wallHit[i].point, transform.position);
-                break;
-            }
-            else if (-Vector3.Distance(wallHit[i].point, transform.position) > MinFoV)
-            {
-                FoV = MinFoV;
-                break;
-            }
-            else
-                FoV = MaxFoV;
-        }
-        Camera.main.transform.localPosition = Vector3.Lerp(Camera.main.transform.localPosition, new Vector3(0, 1, FoV), Time.deltaTime * 5);
+        RaycastHit wallHit = new RaycastHit();
+        wallRay = new Ray(transform.position, Camera.main.transform.position - transform.position);
+        Physics.Raycast(wallRay, out wallHit);
+        if (-Vector3.Distance(wallHit.point, transform.position) > MaxFoV) FoV = -Vector3.Distance(wallHit.point, transform.position) + 0.5f;
+        else if (-Vector3.Distance(wallHit.point, transform.position) > MinFoV) FoV = MinFoV;
+        else FoV = MaxFoV;
+        Camera.main.transform.localPosition = Vector3.Lerp(Camera.main.transform.localPosition, new Vector3(0, 1, FoV), Time.deltaTime * 20);
     }
 }

@@ -13,6 +13,7 @@ using DigitalOpus.MB.Core;
 
 using UnityEditor;
 
+#if UNITY_EDITOR
 namespace DigitalOpus.MB.Core{
 	public class MB3_TextureBakerEditorInternal{
 		//add option to exclude skinned mesh renderer and mesh renderer in filter
@@ -482,7 +483,7 @@ namespace DigitalOpus.MB.Core{
                 k++;
             }
             
-            textureBaker.UpdateIfDirtyOrScript();
+            textureBaker.UpdateIfRequiredOrScript();
         }
 
         public class MultiMatSubmeshInfo{
@@ -669,7 +670,7 @@ namespace DigitalOpus.MB.Core{
 				mm.combinedMaterial = (Material) AssetDatabase.LoadAssetAtPath(matName,typeof(Material));
 				k++;
 			}
-			textureBaker.UpdateIfDirtyOrScript();
+			textureBaker.UpdateIfRequiredOrScript();
 		}
 	
 	public static void CreateCombinedMaterialAssets(MB3_TextureBaker target, string pth){
@@ -718,3 +719,4 @@ namespace DigitalOpus.MB.Core{
 	
 
 }
+#endif

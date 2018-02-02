@@ -1,12 +1,12 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEditor;
 
+#if UNITY_EDITOR
 [System.Serializable]
 public class Consolecreator : MonoBehaviour
 {
-    #region Variables
+#region Variables
     public Affector puzzleAffector;
     public GameObject Light, Heavy, Red, Green;
     public int[] correct = new int[3];
@@ -17,7 +17,7 @@ public class Consolecreator : MonoBehaviour
 
     private Vector3[] switchOffsets = new Vector3[9];
     private Vector3[] hintOffsets = new Vector3[9];
-    #endregion
+#endregion
 
     public void Build(GameObject switchType)
     {
@@ -163,3 +163,4 @@ public class Consolecreator : MonoBehaviour
             puzzleAffector.affected = true;
     }
 }
+#endif

@@ -13,6 +13,8 @@ using System.Text.RegularExpressions;
 using UnityEditor;
 using DigitalOpus.MB.Core;
 
+
+#if UNITY_EDITOR
 [CustomEditor(typeof(MB3_TextureBaker))]
 [CanEditMultipleObjects]
 public class MB3_TextureBakerEditor : Editor {
@@ -34,3 +36,4 @@ public class MB3_TextureBakerEditor : Editor {
 	}
 	
 }
+#endif
