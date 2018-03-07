@@ -136,6 +136,7 @@ public class CameraControl : MonoBehaviour
         Debug.DrawRay(transform.position, Camera.main.transform.position - transform.position);
         wallRay = new Ray(transform.position, Camera.main.transform.position - transform.position);
         Physics.Raycast(wallRay, out wallHit, ignorePlayer);
+
         if (-Vector3.Distance(wallHit.point, transform.position) > MaxFoV) FoV = -Vector3.Distance(wallHit.point, transform.position) + 0.5f;
         else if (-Vector3.Distance(wallHit.point, transform.position) > MinFoV) FoV = MinFoV;
         else FoV = MaxFoV;
